@@ -7,10 +7,10 @@ import { PieChart } from "react-native-gifted-charts";
 import ExpenseBlock from "@/components/ExpenseBlock";
 import IncomeBlock from "@/components/IncomeBlock";
 import SpendingBlock from "@/components/SpendingBlock";
-import ExpenseList from '@/data/expenses.json';
-import incomeList from '@/data/income.json';
-import spendingList from '@/data/spending.json';
- 
+import ExpenseList from "@/data/expenses.json";
+import incomeList from "@/data/income.json";
+import spendingList from "@/data/spending.json";
+
 const Page = () => {
   const pieData = [
     {
@@ -39,7 +39,7 @@ const Page = () => {
           header: () => <Header />,
         }}
       />
-      <View style={[styles.container, { paddingTop: 40 }]}>
+      <View style={[styles.container, { paddingTop: 50 }]}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View
             style={{
@@ -50,7 +50,7 @@ const Page = () => {
           >
             <View style={{ gap: 10 }}>
               <Text style={{ color: Colors.white, fontSize: 16 }}>
-                My <Text style={{ fontWeight: 700 }}>Expenses</Text>
+                Your <Text style={{ fontWeight: 700 }}>Expenses</Text>
               </Text>
               <Text
                 style={{ color: Colors.white, fontSize: 36, fontWeight: 700 }}
@@ -58,7 +58,7 @@ const Page = () => {
                 $1475.<Text style={{ fontSize: 22, fontWeight: 400 }}>00</Text>
               </Text>
             </View>
-            <View style={{paddingVertical:20,alignItems:'center'}}>
+            <View style={{ paddingVertical: 20, alignItems: "center" }}>
               <PieChart
                 data={pieData}
                 donut

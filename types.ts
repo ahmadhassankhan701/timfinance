@@ -8,7 +8,7 @@ export interface ExpenseType {
 export interface IncomeType {
   id: string;
   name: string;
-  amount: string;
+  icon: string;
 }
 
 export interface SpendingType {

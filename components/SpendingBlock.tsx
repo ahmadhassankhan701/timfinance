@@ -18,7 +18,7 @@ const SpendingBlock = ({ spendingList }: { spendingList: SpendingType[] }) => {
   return (
     <View style={styles.spendingSectionWrapper}>
       <Text style={styles.sectionTitle}>
-        July <Text style={{ fontWeight: "700" }}>Spending</Text>
+        Recent <Text style={{ fontWeight: "700" }}>Transactions</Text>
       </Text>
 
       {spendingList.map((item) => {

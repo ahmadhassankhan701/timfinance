@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   FlatList,
   ListRenderItem,
   StyleSheet,
@@ -10,72 +11,18 @@ import React from "react";
 import { ExpenseType } from "@/types";
 import Colors from "@/constants/Colors";
 import { Feather } from "@expo/vector-icons";
-
+import { IconButton } from "react-native-paper";
+const screenWidth = Dimensions.get("screen").width;
 const ExpenseBlock = ({ expenseList }: { expenseList: ExpenseType[] }) => {
   const renderItem: ListRenderItem<Partial<ExpenseType>> = ({
     item,
     index,
   }) => {
-    if (index == 0) {
-      return (
-        <TouchableOpacity onPress={() => {}}>
-          <View
-            style={styles.addItemBtn}
-          >
-            <Feather name="plus" size={22} color={"#ccc"} />
-          </View>
-        </TouchableOpacity>
-      );
-    }
-
-    let amount = item.amount.split(".");
+    let amount = item?.amount?.split(".");
 
     return (
-      <View
-        style={[
-          styles.expenseBlock,
-          {
-            backgroundColor:
-              item.name == "Food"
-                ? Colors.blue
-                : item.name == "Saving"
-                ? Colors.white
-                : Colors.tintColor,
-          },
-        ]}
-      >
-        <Text
-          style={[
-            styles.expenseBlockTxt1,
-            {
-              color:
-                item.name == "Food"
-                  ? Colors.black
-                  : item.name == "Saving"
-                  ? Colors.black
-                  : Colors.white,
-            },
-          ]}
-        >
-          {item.name}
-        </Text>
-        <Text
-          style={[
-            styles.expenseBlockTxt2,
-            {
-              color:
-                item.name == "Food"
-                  ? Colors.black
-                  : item.name == "Saving"
-                  ? Colors.black
-                  : Colors.white,
-            },
-          ]}
-        >
-          ${amount[0]}.
-          <Text style={styles.expenseBlockTxt2Span}>{amount[1]}</Text>
-        </Text>
-        <View style={styles.expenseBlock3View}>
+      <View style={styles.expenseBlock}>
+        <View style={styles.aligno}>
           <Text
             style={[
               styles.expenseBlockTxt1,
@@ -89,8 +36,24 @@ const ExpenseBlock = ({ expenseList }: { expenseList: ExpenseType[] }) => {
               },
             ]}
           >
-            {item.percentage}%
+            Your Balance
           </Text>
+          <IconButton
+            icon="dots-horizontal"
+            iconColor={Colors.white}
+            size={24}
+            onPress={() => console.log("Pressed")}
+          />
+        </View>
+        <Text style={styles.expenseBlockTxt2}>
+          ${amount ? amount[0] + "." : "0."}
+          <Text style={styles.expenseBlockTxt2Span}>
+            {amount ? amount[1] : "00"}
+          </Text>
+        </Text>
+        <View style={styles.aligno}>
+          <Text style={styles.expenseBlockTxt1}>Visa</Text>
+          <Text style={styles.expenseBlockTxt1}>1234 4567 **** ****</Text>
         </View>
       </View>
     );
@@ -99,9 +62,9 @@ const ExpenseBlock = ({ expenseList }: { expenseList: ExpenseType[] }) => {
   const staticItem = [{ name: "Add Item" }];
 
   return (
-    <View style={{paddingVertical: 20}}>
+    <View style={{ paddingVertical: 20 }}>
       <FlatList
-        data={staticItem.concat(expenseList)}
+        data={expenseList}
         renderItem={renderItem}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -113,38 +76,25 @@ const ExpenseBlock = ({ expenseList }: { expenseList: ExpenseType[] }) => {
 export default ExpenseBlock;
 
 const styles = StyleSheet.create({
-  addItemBtn: {
-    flex: 1,
-    borderWidth: 2,
-    borderColor: "#666",
-    borderStyle: "dashed",
-    borderRadius: 10,
-    marginRight: 20,
-    padding:20,
-    justifyContent: 'center',
-    alignItems:'center'
-  },
   expenseBlock: {
     backgroundColor: Colors.tintColor,
-    width: 100,
-    padding: 15,
+    width: screenWidth - 50,
+    padding: 10,
     borderRadius: 15,
-    marginRight: 20,
-    gap: 8,
     justifyContent: "space-between",
-    alignItems: "flex-start",
   },
   expenseBlockTxt1: {
     color: Colors.white,
-    fontSize: 14,
+    fontSize: 16,
   },
   expenseBlockTxt2: {
     color: Colors.white,
-    fontSize: 16,
+    fontSize: 50,
     fontWeight: "600",
+    marginBottom: 15,
   },
   expenseBlockTxt2Span: {
-    fontSize: 12,
+    fontSize: 30,
     fontWeight: "400",
   },
   expenseBlock3View: {
@@ -152,5 +102,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 3,
     borderRadius: 10,
+  },
+  aligno: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
   },
 });

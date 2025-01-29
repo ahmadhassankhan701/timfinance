@@ -1,29 +1,59 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import Colors from '@/constants/Colors'
-import { Stack } from 'expo-router'
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React from "react";
+import Colors from "@/constants/Colors";
+import { Stack } from "expo-router";
+import Header from "@/components/Header";
+import { PieChart } from "react-native-gifted-charts";
+import ExpenseBlock from "@/components/ExpenseBlock";
+import IncomeBlock from "@/components/IncomeBlock";
+import SpendingBlock from "@/components/SpendingBlock";
+import ExpenseList from "@/data/expenses.json";
+import incomeList from "@/data/income.json";
+import spendingList from "@/data/spending.json";
 
 const Page = () => {
+  const pieData = [
+    {
+      value: 47,
+      color: Colors.tintColor,
+      focused: true,
+      text: "47%",
+    },
+    {
+      value: 40,
+      color: Colors.blue,
+      text: "40%",
+    },
+    {
+      value: 16,
+      color: Colors.white,
+      text: "16%",
+    },
+    { value: 3, color: "#FFA5BA", gradientCenterColor: "#FF7F97", text: "3%" },
+  ];
+
   return (
     <>
-      <Stack.Screen options={{ headerShown: false }} />
-      <View style={styles.container}>
-        <Text style={styles.text}>Transactions</Text>
+      <Stack.Screen
+        options={{
+          header: () => <Header />,
+        }}
+      />
+      <View style={[styles.container, { paddingTop: 50 }]}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <SpendingBlock spendingList={spendingList} />
+        </ScrollView>
       </View>
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: Colors.black,
+    paddingHorizontal: 20,
   },
-  text: {
-    color: Colors.white,
-  },
-})
+});

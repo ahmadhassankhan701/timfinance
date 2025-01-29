@@ -1,11 +1,14 @@
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { AntDesign, FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
 import { View } from "react-native";
 import Colors from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
 
 const Layout = () => {
+  const router = useRouter();
+  const authed = true;
+  if (!authed) router.replace("/login");
   return (
     <>
       <Tabs
@@ -16,18 +19,16 @@ const Layout = () => {
             bottom: 40,
             justifyContent: "center",
             alignSelf: "center",
-            height: 63,
-            marginHorizontal: 120,
+            marginHorizontal: 60,
             paddingHorizontal: 10,
-            paddingVertical: 8,
-            paddingBottom: 8,
+            height: 60,
             borderRadius: 40,
             borderWidth: 1,
             borderTopWidth: 1,
             borderColor: "#333",
             borderTopColor: "#333",
           },
-          tabBarShowLabel: false,
+          tabBarShowLabel: true,
           tabBarInactiveTintColor: "#999",
           tabBarActiveTintColor: Colors.white,
         }}
@@ -35,15 +36,22 @@ const Layout = () => {
         <Tabs.Screen
           name="index"
           options={{
+            tabBarLabel: "Home",
+            tabBarLabelStyle: {
+              marginTop: 5,
+            },
+            tabBarActiveTintColor: Colors.tintColor,
             tabBarIcon: ({ color, size, focused }) => (
               <View
                 style={{
-                  padding: 12,
                   borderRadius: 30,
-                  backgroundColor: focused ? Colors.tintColor : Colors.grey,
                 }}
               >
-                <SimpleLineIcons name="pie-chart" size={18} color={color} />
+                <SimpleLineIcons
+                  name="home"
+                  size={25}
+                  color={focused ? Colors.tintColor : Colors.white}
+                />
               </View>
             ),
           }}
@@ -51,15 +59,22 @@ const Layout = () => {
         <Tabs.Screen
           name="transactions"
           options={{
+            tabBarLabel: "Transactions",
+            tabBarLabelStyle: {
+              marginTop: 5,
+            },
+            tabBarActiveTintColor: Colors.tintColor,
             tabBarIcon: ({ color, size, focused }) => (
               <View
                 style={{
-                  padding: 12,
                   borderRadius: 30,
-                  backgroundColor: focused ? Colors.tintColor : Colors.grey,
                 }}
               >
-                <AntDesign name="swap" size={18} color={color} />
+                <AntDesign
+                  name="swap"
+                  size={25}
+                  color={focused ? Colors.tintColor : Colors.white}
+                />
               </View>
             ),
           }}
@@ -67,15 +82,22 @@ const Layout = () => {
         <Tabs.Screen
           name="profile"
           options={{
+            tabBarLabel: "Account",
+            tabBarLabelStyle: {
+              marginTop: 5,
+            },
+            tabBarActiveTintColor: Colors.tintColor,
             tabBarIcon: ({ color, size, focused }) => (
               <View
                 style={{
-                  padding: 12,
                   borderRadius: 30,
-                  backgroundColor: focused ? Colors.tintColor : Colors.grey,
                 }}
               >
-                <FontAwesome name="user-o" size={18} color={color} />
+                <FontAwesome
+                  name="user-o"
+                  size={25}
+                  color={focused ? Colors.tintColor : Colors.white}
+                />
               </View>
             ),
           }}

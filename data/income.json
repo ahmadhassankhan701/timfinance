@@ -1,17 +1,17 @@
 [
   {
     "id": "1",
-    "name": "Salary",
-    "amount": "1,500.00"
+    "name": "Send",
+    "icon": "arrow-top-right"
   },
   {
     "id": "2",
-    "name": "Freelancing",
-    "amount": "850.99"
+    "name": "Receive",
+    "icon": "arrow-bottom-left"
   },
   {
-    "id": "3",
-    "name": "Interest",
-    "amount": "200.95"
+    "id": "4",
+    "name": "Settings",
+    "icon": "account-settings-outline"
   }
 ]
